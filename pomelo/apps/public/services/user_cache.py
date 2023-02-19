@@ -41,3 +41,7 @@ def user_info_list():
         is_list=True
     )
     return user_list
+
+
+if __name__ == '__main__':
+    user_cache()

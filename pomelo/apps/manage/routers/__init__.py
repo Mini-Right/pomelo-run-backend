@@ -8,6 +8,9 @@
 # @Description :
 from fastapi import APIRouter
 from pomelo.apps.manage.routers.database_routers import database
+from pomelo.apps.manage.routers.project_routers import project
+
 manage = APIRouter()
 
-manage.include_router(router=database, prefix='/manage')
+manage.include_router(router=database, prefix='/database')
+manage.include_router(router=project, prefix='/project')

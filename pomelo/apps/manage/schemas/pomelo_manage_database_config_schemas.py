@@ -7,7 +7,6 @@
 # @Software    : PyCharm
 # @Description :
 from enum import Enum
-from typing import List
 
 from pydantic import BaseModel, Field
 
@@ -47,30 +46,6 @@ class PomeloManageDatabaseConfigUpdateSchema(PomeloManageDatabaseConfigCreateSch
 
 class PomeloManageDatabaseConfigQueryListSchema(BaseModel):
     database_name: str = Field(default=None, title='数据库名称')
-
-
-class PomeloManageDatabaseConfigItemSchema(BaseModel):
-    database_id: str
-    database_name: str
-    database_host: str
-    database_user: str
-    database_port: int
-    database_password: str
-    create_time: str
-    update_time: str
-    create_user: str
-    operation_user: str
-    remark: str
-    is_delete: int
-
-
-class ResponseBaseSchema(BaseModel):
-    code: int
-    msg: str
-
-
-class PomeloManageDatabaseConfigQueryListResponseSchema(ResponseBaseSchema):
-    data: List[PomeloManageDatabaseConfigItemSchema]
 
 
 class PomeloManageDatabaseConfigStatusSchema(PomeloManageDatabaseConfigIDSchema):

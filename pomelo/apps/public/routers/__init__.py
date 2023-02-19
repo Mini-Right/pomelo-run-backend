@@ -18,16 +18,6 @@ logger = logging.getLogger(__name__)
 public = APIRouter()
 
 
-@public.get('/user_info/{user_id}', name='获取用户信息')
-async def public_user_info(user_id: str):
-    try:
-        user_info = get_user_info(user_id=user_id)
-        return success_response(data=user_info, msg=f"获取用户信息成功")
-    except Exception as e:
-        logger.exception(e)
-        return fail_response(msg=f"获取用户信息失败: {str(e)}")
-
-
 @public.get('/user_info/list', name='获取用户信息列表')
 async def public_user_info_list():
     try:
@@ -38,6 +28,14 @@ async def public_user_info_list():
         return fail_response(msg=f"获取用户信息失败: {str(e)}")
 
 
+@public.get('/user_info/{user_id}', name='获取用户信息')
+async def public_user_info(user_id: str):
+    try:
+        user_info = get_user_info(user_id=user_id)
+        return success_response(data=user_info, msg=f"获取用户信息成功")
+    except Exception as e:
+        logger.exception(e)
+        return fail_response(msg=f"获取用户信息失败: {str(e)}")
 
 
 @public.post('/database_connection/mysql', name='数据库连接')
