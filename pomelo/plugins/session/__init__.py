@@ -12,7 +12,7 @@ from pomelo.config import config
 from pomelo.plugins.session.mysql_session import init_session as init_mysql_session
 from pomelo.plugins.session.redis_session import init_session as init_redis_session
 
-__all__ = ['MySQLSession', 'RedisSession']
+__all__ = ['MySQLSession', 'RedisSession', 'init_mysql_session']
 
 
 class MySQLSession(object):

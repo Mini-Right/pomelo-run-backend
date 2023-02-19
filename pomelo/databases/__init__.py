@@ -23,10 +23,11 @@ def gen_id():
 
 class Base(base):
     __abstract__ = True
-    id = Column(VARCHAR(50), default=gen_id, primary_key=True, index=True)
+    # id = Column(VARCHAR(50), default=gen_id, primary_key=True, index=True)
     create_time = Column(DATETIME, default=datetime.now, server_default=func.now(), comment="创建时间")
     update_time = Column(DATETIME, default=datetime.now, onupdate=datetime.now, server_default=func.now(), server_onupdate=func.now(), comment="更新时间")
-    operation_user = Column(VARCHAR(50), comment="更新人")
+    create_user = Column(VARCHAR(50), default='pomelo', comment="创建人")
+    operation_user = Column(VARCHAR(50), default='pomelo', comment="更新人")
     remark = Column(LONGTEXT, comment="备注")
     is_delete = Column(INTEGER(11), server_default=text("'0'"), comment="逻辑删除:0=未删除,1=删除")
 

@@ -54,7 +54,7 @@ def orm_fields_one_to_dict(result):
     """
     if not result or isinstance(result, list):
         return {}
-    return jsonable_encoder(dict(zip(result.keys(), result)))
+    return jsonable_encoder(dict(zip(result._fields, result._data)))
 
 
 def orm_fields_all_to_list(result_list):
@@ -63,7 +63,7 @@ def orm_fields_all_to_list(result_list):
    """
     if not isinstance(result_list, list):
         return []
-    return jsonable_encoder([dict(zip(v.keys(), v)) for v in result_list])
+    return jsonable_encoder([dict(zip(v._fields, v._data)) for v in result_list])
 
 
 def orm_table_one_to_dict(table_cls, result):

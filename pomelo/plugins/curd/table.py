@@ -52,8 +52,6 @@ def lower(func: T) -> T:
 def count(func: T) -> T:
     @wraps
     def wrapper(self, *args, **kwargs):
-        print(args)
-        print(kwargs)
         is_count = kwargs.get('is_count')
         result_list = func(self, *args, **kwargs)
         if not is_count:
@@ -99,15 +97,9 @@ class PomeloTableCreate(CURDTableBase):
         with self.session() as session:
             session: Session
             try:
-                table = table_class
                 with session.begin_nested():
                     session.add(table_class)
                     session.commit()
-                # humo表返回id
-                if table_class.__tablename__.startswith("pomelo_"):
-                    return table.id
-                else:
-                    return True
             except Exception as e:
                 session.rollback()
                 msg = f"插入失败: {e}"
@@ -226,7 +218,7 @@ class PomeloTableRead(CURDTableBase):
             self, sql: str, is_dict: bool = False, is_lower: bool = False
     ):
         with self.session() as session:
-            result = session.execute(sql).fetchone()
+            result = session.execute(text(sql)).fetchone()
             if is_dict:
                 result: dict = orm_fields_one_to_dict(result)
             return result
@@ -388,7 +380,7 @@ class PomeloTableRead(CURDTableBase):
     ):
         with self.session() as session:
             try:
-                result_list = session.execute(sql).fetchall()
+                result_list = session.execute(text(sql)).fetchall()
             except ResourceClosedError as e:
                 logger.warning(e)
                 return [{}]

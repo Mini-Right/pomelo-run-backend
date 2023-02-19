@@ -9,12 +9,13 @@
 from sqlalchemy import Column
 from sqlalchemy.dialects.mysql import LONGTEXT, VARCHAR
 
-from pomelo.databases import Base
+from pomelo.databases import Base, gen_id
 
 
 class PomeloSystemUserTable(Base):
     __tablename__ = "pomelo_system_user"
     __table_args__ = ({'comment': '系统用户表'})
+    user_id = Column(VARCHAR(50), default=gen_id, primary_key=True, index=True)
     username = Column(VARCHAR(50), nullable=False, unique=True, comment="账号")
     nickname = Column(VARCHAR(50), nullable=False, comment="姓名")
     password = Column(VARCHAR(255), nullable=False, comment="密码")

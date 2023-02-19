@@ -7,6 +7,8 @@
 # @Software    : PyCharm
 # @Description :
 
+from enum import Enum
+
 from pydantic import BaseModel, Field
 
 
@@ -45,3 +47,12 @@ class ConfigSchema(BaseModel):
     DB: DBSchema
     REDIS: RedisSchema
     LARK_SUITE: LarkSuiteSchema
+
+
+class RunConfigEnum(str, Enum):
+    Create = '新增'
+    Update = '修改'
+    ChangeStatus = '变更状态'
+    Delete = '删除'
+    Query = '查询'
+    QueryDetail = '查询详情'

@@ -15,7 +15,7 @@ from fastapi.openapi.docs import get_swagger_ui_html
 from fastapi.staticfiles import StaticFiles
 
 from pomelo.apps import api
-from pomelo.databases.pomelo_api_record_table import PomeloAPIRecordTable
+from pomelo.databases.pomelo_system_api_record_table import PomeloSystemAPIRecordTable
 from pomelo.middlewares import middlewares
 from pomelo.middlewares.correlation_id import configure_logging_basic
 from pomelo.plugins.crypt.token import get_token_user_id
@@ -59,5 +59,5 @@ async def process_timer(request: Request, call_next):
     response.headers["X-Process-Time"] = str(process_time)
     path = request.url.path
     status_code = response.status_code
-    PomeloTableCURD().add_one(table_class=PomeloAPIRecordTable(path=path, status_code=status_code))
+    PomeloTableCURD().add_one(table_class=PomeloSystemAPIRecordTable(path=path, status_code=status_code))
     return response

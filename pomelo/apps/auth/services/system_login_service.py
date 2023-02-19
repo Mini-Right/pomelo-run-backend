@@ -25,7 +25,7 @@ class PomeloSystemLoginService(PomeloAuthService):
             raise PomeloUserError('用户不存在')
         if not Password().verify_password(plain_password=data.password, hashed_password=user_info.password):
             raise PomeloUserError('用户名或密码错误')
-        token = self.set_user_token(user_id=user_info.id)
+        token = self.set_user_token(user_id=user_info.user_id)
         return {'token': token}
 
 

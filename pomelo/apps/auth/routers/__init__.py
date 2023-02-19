@@ -31,7 +31,6 @@ async def auth_login(data: SystemLoginSchema):
 
 @auth.get('/lark_suite_login', name='飞书登录')
 async def auth_lark_suite_login(code: str):
-    print('飞书登录code:', code)
     try:
         result = PomeloLarkSuiteLoginService().login(code=code)
         return success_response(data=result, msg="登陆成功")
