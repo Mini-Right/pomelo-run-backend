@@ -75,4 +75,3 @@ class PomeloManageProjectConfigService(object):
             params=[PomeloManageProjectConfigTable.project_id == project_id],
             is_dict=True,
         )
-

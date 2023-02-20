@@ -7,7 +7,7 @@
 # @Software    : PyCharm
 # @Description :
 from sqlalchemy import Column
-from sqlalchemy.dialects.mysql import VARCHAR, INTEGER, DATETIME
+from sqlalchemy.dialects.mysql import VARCHAR
 
 from pomelo.databases import Base, gen_id
 

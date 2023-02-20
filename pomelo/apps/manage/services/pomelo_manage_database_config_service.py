@@ -91,4 +91,3 @@ class PomeloManageDatabaseConfigService(object):
             params=[PomeloManageDatabaseConfigTable.database_id == database_id],
             is_dict=True,
         )
-

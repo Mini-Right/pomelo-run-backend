@@ -9,7 +9,7 @@
 
 from fastapi import APIRouter, Request
 
-from pomelo.apps.manage.schemas.pomelo_manage_environment_config_schemas import PomeloManageEnvironmentConfigIDSchema, PomeloManageEnvironmentConfigCreateSchema, PomeloManageEnvironmentConfigUpdateSchema, PomeloManageEnvironmentConfigQueryListSchema, RouterConfigEnum, \
+from pomelo.apps.manage.schemas.pomelo_manage_environment_config_schemas import PomeloManageEnvironmentConfigCreateSchema, PomeloManageEnvironmentConfigUpdateSchema, PomeloManageEnvironmentConfigQueryListSchema, RouterConfigEnum, \
     PomeloManageEnvironmentConfigSetDefaultSchema
 from pomelo.apps.manage.services.pomelo_manage_environment_config_service import PomeloManageEnvironmentConfigService
 from pomelo.handler import success_response, fail_response

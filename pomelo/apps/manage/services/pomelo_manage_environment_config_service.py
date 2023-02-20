@@ -8,7 +8,7 @@
 # @Description :
 import uuid
 
-from pomelo.apps.manage.schemas.pomelo_manage_environment_config_schemas import PomeloManageEnvironmentConfigIDSchema, PomeloManageEnvironmentConfigCreateSchema, PomeloManageEnvironmentConfigUpdateSchema, PomeloManageEnvironmentConfigQueryListSchema, PomeloManageEnvironmentConfigSetDefaultSchema
+from pomelo.apps.manage.schemas.pomelo_manage_environment_config_schemas import PomeloManageEnvironmentConfigCreateSchema, PomeloManageEnvironmentConfigUpdateSchema, PomeloManageEnvironmentConfigQueryListSchema, PomeloManageEnvironmentConfigSetDefaultSchema
 from pomelo.databases.pomelo_manage_environment_config_table import PomeloManageEnvironmentConfigTable
 from pomelo.databases.pomelo_manage_project_config_table import PomeloManageProjectConfigTable
 from pomelo.plugins.curd import PomeloTableCURD
@@ -33,10 +33,11 @@ class PomeloManageEnvironmentConfigService(object):
                 operation_user=operation_user,
             )
         )
-        PomeloManageEnvironmentConfigService.set_default(
-            data=PomeloManageEnvironmentConfigSetDefaultSchema(env_id=env_id, project_id=data.project_id),
-            operation_user=operation_user
-        )
+        if data.is_default:
+            PomeloManageEnvironmentConfigService.set_default(
+                data=PomeloManageEnvironmentConfigSetDefaultSchema(env_id=env_id, project_id=data.project_id),
+                operation_user=operation_user
+            )
 
     @staticmethod
     def update(data: PomeloManageEnvironmentConfigUpdateSchema, operation_user: str):
@@ -55,10 +56,11 @@ class PomeloManageEnvironmentConfigService(object):
             )
         )
 
-        PomeloManageEnvironmentConfigService.set_default(
-            data=PomeloManageEnvironmentConfigSetDefaultSchema(env_id=data.env_id, project_id=data.project_id),
-            operation_user=operation_user
-        )
+        if data.is_default:
+            PomeloManageEnvironmentConfigService.set_default(
+                data=PomeloManageEnvironmentConfigSetDefaultSchema(env_id=data.env_id, project_id=data.project_id),
+                operation_user=operation_user
+            )
 
     @staticmethod
     def set_default(data: PomeloManageEnvironmentConfigSetDefaultSchema, operation_user: str):

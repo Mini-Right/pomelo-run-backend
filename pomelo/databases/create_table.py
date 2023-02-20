@@ -11,7 +11,7 @@ from urllib import parse
 from sqlalchemy import create_engine
 
 from pomelo.config import config
-from pomelo.databases.pomelo_manage_database_config_table import Base
+from pomelo.databases.pomelo_manage_address_config_table import Base
 
 if __name__ == "__main__":
     DB = config.DB.POMELO.dict()
